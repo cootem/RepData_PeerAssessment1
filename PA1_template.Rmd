@@ -18,7 +18,7 @@ data$date <- ymd(data$date ,tz = "America/New_York")
 ## What is mean total number of steps taken per day?
 ```{r, echo=TRUE, message=FALSE}
 stepsPerDay <- data[!is.na(data$steps),] %>% group_by(date) %>% summarise(Sum = sum(steps))
-qplot(stepsPerDay$Sum, geom="histogram") 
+hist(stepsPerDay$Sum, main = "Histogram of Daily Steps", xlab = "Daily Steps")
 ```
 
 #### The mean is
@@ -51,7 +51,7 @@ dataCleaned <- data
 ```{r, echo=TRUE, message=FALSE}
 dataCleaned[is.na(dataCleaned$steps), 1] <- merge(dataCleaned[is.na(dataCleaned$steps), ], stepsPerInterval, by = "interval")$Average
 stepsPerDayCleaned <- dataCleaned %>% group_by(date) %>% summarise(Sum = sum(steps))
-qplot(stepsPerDayCleaned$Sum, geom="histogram") 
+hist(stepsPerDayCleaned$Sum, main = "Histogram of Daily Steps Cleaned", xlab = "Daily Steps")
 ```
 
 #### The mean is

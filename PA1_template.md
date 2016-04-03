@@ -16,7 +16,7 @@ data$date <- ymd(data$date ,tz = "America/New_York")
 
 ```r
 stepsPerDay <- data[!is.na(data$steps),] %>% group_by(date) %>% summarise(Sum = sum(steps))
-qplot(stepsPerDay$Sum, geom="histogram") 
+hist(stepsPerDay$Sum, main = "Histogram of Daily Steps", xlab = "Daily Steps")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)
@@ -82,7 +82,7 @@ dataCleaned <- data
 ```r
 dataCleaned[is.na(dataCleaned$steps), 1] <- merge(dataCleaned[is.na(dataCleaned$steps), ], stepsPerInterval, by = "interval")$Average
 stepsPerDayCleaned <- dataCleaned %>% group_by(date) %>% summarise(Sum = sum(steps))
-qplot(stepsPerDayCleaned$Sum, geom="histogram") 
+hist(stepsPerDayCleaned$Sum, main = "Histogram of Daily Steps Cleaned", xlab = "Daily Steps")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)
